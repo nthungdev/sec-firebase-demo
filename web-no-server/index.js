@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded", event => {
 });
 
 function addMessage(container, name, message) {
-  var messageLine = document.createElement("p"); // Create a <button> element
+  var messageLine = document.createElement("p");
   messageLine.className = "message-line";
 
   var text = document.createTextNode(`${name}: ${message}`); // Create a text node
-  messageLine.appendChild(text); // Append the text to <button>
+  messageLine.appendChild(text); // Append the text to <p>
 
   container.appendChild(messageLine);
 }
