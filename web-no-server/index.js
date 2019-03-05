@@ -44,11 +44,12 @@ function sendMessage() {
   var chatroomRef = firestore.collection("chatroom");
 
   // html reference
-  const name = document.querySelector("#user-name");
+  // const name = document.querySelector("#user-name");
+  const name = formName;
   const message = document.querySelector("#message");
 
   var newMessage = {
-    name: name.value,
+    name: name,
     message: message.value,
     time: firebase.firestore.Timestamp.fromDate(new Date())
   };

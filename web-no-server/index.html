@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Firebase Demo</title>
 
+    <link rel="stylesheet" href="./index.css" />
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
 
@@ -13,16 +14,43 @@
   <body>
     <h1 class="chatroom-title">Firebase Chatroom</h1>
 
-    <div id="chatroom">
-      <div id="chatroom-chat"></div>
+    <div class="chatroom" id="chatroom">
+      <div class="chatroom-row1">
+        <!-- <div class="chatroom-row1--participants">
+          <div class="chatroom-row1--participants_title">Participants</div>
+        </div> -->
+        <div class="chatroom-row1--chatbox" id="chatroom-chat"></div>
+      </div>
 
-      <div id="chatroom-send-message">
-        <input id="user-name" type="text" minlength="2" />
-        <input id="message" type="text" minlength="2" />
-        <button onclick="sendMessage()">Send</button>
+      <div class="chatroom-row2">
+        <div class="chatroom-send-message" id="chatroom-send-message">
+          <div class="chatroom-send-message--input">
+            <input
+              id="message"
+              type="text"
+              minlength="2"
+              placeholder="Enter your message.."
+            />
+          </div>
+          <div class="chatroom-send-message--button">
+            <button onclick="sendMessage()">Send</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <script>
+      let formName = "DefaultUser";
+      function getName() {
+        var person = prompt("Please enter your name", "Harry Potter");
+        if (person != null) {
+          console.log("test");
+          formName = person;
+        }
+      }
+
+      getName();
+    </script>
     <script src="./index.js"></script>
   </body>
 </html>
