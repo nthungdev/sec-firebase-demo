@@ -2,16 +2,17 @@
   font-family: "Work Sans", sans-serif;
 }
 
-.chatroom-title {
+#chatroom-title {
+  text-align: center;
   font-size: 65px;
   padding: 0 10vh;
   margin: 0;
   font-weight: 500;
 }
 
-.chatroom {
+#chatroom {
   height: calc(100vh - 100px);
-  display: flex;
+  /* display: flex; */
   padding: 5vh 10vh;
   box-sizing: border-box;
   flex-direction: column;
@@ -20,18 +21,6 @@
 .chatroom-row1 > * {
   background: #f9f9f9;
   /* height: 60vh; */
-}
-
-.chatroom-row1--participants {
-  box-sizing: border-box;
-  padding: 10%;
-}
-
-.chatroom-row1--participants_title {
-  color: #6a6a6a;
-  font-size: 40px;
-  font-weight: 500;
-  text-align: center;
 }
 
 .chatroom-row1--chatbox {
@@ -44,9 +33,9 @@
 }
 
 .chatroom-row1 {
-  display: grid;
+  /* display: grid;
   grid-column-gap: 50px;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; */
 }
 
 .chatroom-row1--chatbox {
@@ -86,7 +75,6 @@
 .chatroom-send-message--button > button {
   width: 100%;
   height: 100%;
-  /* ba */
 }
 
 .chatroom-row2 {

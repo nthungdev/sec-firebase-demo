@@ -1,6 +1,6 @@
-import 'package:demo/message.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 void main() => runApp(FirebaseChatroom());
 
@@ -12,15 +12,24 @@ class FirebaseChatroom extends StatefulWidget {
 }
 
 class FirebaseChatroomState extends State<FirebaseChatroom> {
-  TextEditingController _nameController = TextEditingController();
   TextEditingController _messageControler = TextEditingController();
 
-  CollectionReference _chatroomRef;
+  CollectionReference _chatroomRef = Firestore.instance.collection("chatroom");
+  String userName = "Firebase User";
 
-  void initState() {
-    super.initState();
+  _signInWithGoogle() async {
+    GoogleSignIn _googleSignIn = GoogleSignIn();
 
-    _chatroomRef = Firestore.instance.collection("chatroom");
+    try {
+      GoogleSignInAccount account = await _googleSignIn.signIn();
+      if (account != null) {
+        userName = account.displayName;
+        print(account);
+      }
+    } catch (error) {
+      print(error);
+      userName = "Firebase user";
+    }
   }
 
   Widget _buildMessage(String name, String message) {
@@ -40,12 +49,14 @@ class FirebaseChatroomState extends State<FirebaseChatroom> {
   }
 
   _sendMessage() {
-    print(_nameController.text);
     print(_messageControler.text);
 
-    var message =
-        Message(_nameController.text, _messageControler.text, DateTime.now());
-    _chatroomRef.add(message.toJson());
+    var message = {
+      "name": userName,
+      "message": _messageControler.text,
+      "time": DateTime.now()
+    };
+    _chatroomRef.add(message);
 
     _messageControler.text = "";
   }
@@ -57,6 +68,12 @@ class FirebaseChatroomState extends State<FirebaseChatroom> {
         home: Scaffold(
             appBar: AppBar(
               title: Text("Firebase Chatroom"),
+              actions: <Widget>[
+                IconButton(
+                  onPressed: _signInWithGoogle,
+                  icon: Icon(Icons.person),
+                ),
+              ],
             ),
             body: Column(
               children: <Widget>[
@@ -98,20 +115,10 @@ class FirebaseChatroomState extends State<FirebaseChatroom> {
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: Column(
-                              children: <Widget>[
-                                TextFormField(
-                                  decoration:
-                                      InputDecoration(hintText: "Your name"),
-                                  controller: _nameController,
-                                ),
-                                TextFormField(
-                                  onEditingComplete: _sendMessage,
-                                  decoration:
-                                      InputDecoration(hintText: "Your message"),
-                                  controller: _messageControler,
-                                ),
-                              ],
+                            child: TextFormField(
+                              decoration:
+                                  InputDecoration(hintText: "Your message..."),
+                              controller: _messageControler,
                             ),
                           ),
                           IconButton(

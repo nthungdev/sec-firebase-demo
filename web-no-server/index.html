@@ -14,11 +14,8 @@
   <body>
     <h1 id="chatroom-title">Firebase Chatroom</h1>
 
-    <div class="chatroom" id="chatroom">
+    <div id="chatroom">
       <div class="chatroom-row1">
-        <!-- <div class="chatroom-row1--participants">
-          <div class="chatroom-row1--participants_title">Participants</div>
-        </div> -->
         <div class="chatroom-row1--chatbox" id="chatroom-chat"></div>
       </div>
 
@@ -28,8 +25,7 @@
             <input
               id="message"
               type="text"
-              minlength="2"
-              placeholder="Enter your message.."
+              placeholder="Enter your message..."
             />
           </div>
           <div class="chatroom-send-message--button">
@@ -39,18 +35,6 @@
       </div>
     </div>
 
-    <script>
-      let formName = "DefaultUser";
-      function getName() {
-        var person = prompt("Please enter your name", "Harry Potter");
-        if (person != null) {
-          console.log("test");
-          formName = person;
-        }
-      }
-
-      getName();
-    </script>
     <script src="./index.js"></script>
   </body>
 </html>
